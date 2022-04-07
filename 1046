@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        sort(stones.begin(),stones.end());
+        int len=stones.size();
+        int small=1;
+        
+        while(stones.size()>1)
+        {
+            auto x=stones.end()-1;
+            auto y=stones.end()-2;
+            
+            if((*x)==(*y))
+            {
+              stones.erase(x);
+              stones.erase(y);
+            }
+            else {
+             (*x)= (*x)-(*y);
+                stones.erase(y);
+            }
+            sort(stones.begin(),stones.end());
+        }
+        if(stones.size()==1)
+        {
+            small=stones.front();
+        }
+        else
+        {
+            small=0;
+        }
+        return small;
+    }
+};
